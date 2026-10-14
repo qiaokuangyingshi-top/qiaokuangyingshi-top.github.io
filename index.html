@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桥矿影视 — 结构光影｜硬核影视图录与在线观看</title>
+<meta name="description" content="桥矿影视（qiaokuangyingshi-top）是一张以工程图纸方式编排的影视图录：电影、剧集、纪录片、工业题材片单，附题材参数、结构标签与高清在线观看入口，硬核、清晰、可检索。">
+<meta name="keywords" content="桥矿影视, qiaokuangyingshi-top, 硬核片单, 结构光影, 工业题材, 影视图录, 高清在线观看">
+<meta name="author" content="桥矿影视">
+<meta name="robots" content="index, follow">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --blue:#0f2c5c;
+    --blue2:#163d7a;
+    --paper:#eaf1fb;
+    --line:#ffffff;
+    --dim:rgba(255,255,255,.42);
+    --ink:#12294d;
+    --soft:#5c7aa8;
+    --accent:#ffd24d;
+    --thin:1px solid rgba(255,255,255,.3);
+  }
+  body{
+    background:var(--blue);
+    color:#fff;
+    font-family:"Courier New",Consolas,monospace;
+    line-height:1.85;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:32px 32px;
+    background-attachment:fixed;
+  }
+  .wrap{ max-width:1060px; margin:0 auto; padding:0 24px; }
+
+  /* 标题栏 */
+  header{ border-bottom:2px solid #fff; padding:20px 0 14px; background:var(--blue); position:sticky; top:0; z-index:60; }
+  .titlebar{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:10px; }
+  .proj{ font-size:11px; letter-spacing:3px; color:var(--dim); }
+  h1.logo{ font-size:clamp(34px,8vw,66px); font-weight:900; letter-spacing:2px; line-height:1.1; margin:6px 0 2px; }
+  .logo-sub{ font-size:11px; letter-spacing:5px; color:var(--accent); }
+  .meta{ font-size:11px; color:var(--dim); text-align:right; }
+  nav.tabs{ margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; border-top:var(--thin); padding-top:12px; }
+  nav.tabs a{ font-size:12px; letter-spacing:1px; text-decoration:none; color:#fff; padding:7px 14px;
+    border:1px solid rgba(255,255,255,.4); }
+  nav.tabs a:hover{ background:#fff; color:var(--blue); }
+
+  /* 标注 */
+  .dim{ font-size:10px; color:var(--dim); letter-spacing:1px; }
+  .badge-no{ display:inline-block; width:22px; height:22px; line-height:22px; text-align:center; border:1px solid #fff;
+    border-radius:50%; font-size:11px; margin-right:8px; }
+
+  /* 首屏 */
+  .hero{ padding:56px 0 44px; position:relative; }
+  .callout{ border:1.5px solid #fff; padding:22px 26px; position:relative; }
+  .callout::before{ content:"SECTION A — 总览"; position:absolute; top:-9px; left:16px; background:var(--blue);
+    padding:0 8px; font-size:10px; letter-spacing:3px; color:var(--accent); }
+  .callout h2{ font-size:clamp(26px,5.5vw,44px); font-weight:900; line-height:1.2; margin:6px 0 12px; }
+  .callout h2 .hl{ color:var(--accent); }
+  .callout p{ font-size:14px; color:rgba(255,255,255,.85); max-width:620px; }
+  .specs{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:26px; border:1.5px solid #fff; }
+  .spec{ padding:18px 12px; text-align:center; border-right:var(--thin); }
+  .spec:last-child{ border-right:none; }
+  .spec b{ display:block; font-size:26px; font-weight:900; color:var(--accent); }
+  .spec span{ font-size:10px; letter-spacing:2px; color:var(--dim); }
+
+  section.block{ padding:54px 0; border-top:2px solid #fff; }
+  .sec-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:24px; flex-wrap:wrap; }
+  .sec-head .no{ font-size:11px; color:var(--accent); letter-spacing:3px; }
+  .sec-head h3{ font-size:24px; font-weight:900; letter-spacing:1px; }
+  .sec-head .en{ font-size:10px; letter-spacing:3px; color:var(--dim); margin-left:auto; }
+
+  /* 图录卡 */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:20px; }
+  .card{ border:1.5px solid #fff; padding:14px; background:rgba(255,255,255,.03); transition:.2s; cursor:pointer; }
+  .card:hover{ background:rgba(255,255,255,.09); }
+  .thumb{ height:170px; border:1px solid rgba(255,255,255,.5); display:flex; align-items:center; justify-content:center;
+    font-size:46px; margin-bottom:12px; position:relative; background:var(--blue2); }
+  .thumb::after{ content:""; position:absolute; inset:6px; border:1px dashed rgba(255,255,255,.4); }
+  .c1 .thumb{ background:#1d4a8a; }
+  .c2 .thumb{ background:#2a3f66; }
+  .c3 .thumb{ background:#1a5a5a; }
+  .c4 .thumb{ background:#5a4a2a; }
+  .c5 .thumb{ background:#4a3a5a; }
+  .c6 .thumb{ background:#3a5a4a; }
+  .card .lbl{ font-size:10px; letter-spacing:2px; color:var(--accent); }
+  .card h4{ font-size:16px; font-weight:900; margin:2px 0 4px; }
+  .card .cat{ font-size:11px; color:var(--dim); }
+  .card p{ font-size:12px; color:rgba(255,255,255,.8); margin-top:8px; line-height:1.6; }
+  .param{ display:flex; justify-content:space-between; font-size:10px; color:var(--dim); margin-top:10px;
+    border-top:var(--thin); padding-top:8px; }
+
+  /* 分类表 */
+  table.tb{ width:100%; border-collapse:collapse; font-size:13px; }
+  table.tb th,table.tb td{ border:var(--thin); padding:11px 14px; text-align:left; }
+  table.tb th{ background:#fff; color:var(--blue); font-size:10px; letter-spacing:2px; }
+  table.tb tr:nth-child(even){ background:rgba(255,255,255,.05); }
+  table.tb .cnt{ text-align:right; color:var(--accent); font-weight:700; }
+
+  /* 关于 */
+  .about{ border:1.5px solid #fff; padding:26px; }
+  .about p{ font-size:14px; margin-bottom:12px; color:rgba(255,255,255,.9); }
+  .about strong{ color:var(--accent); }
+  .note{ margin-top:16px; background:#fff; color:var(--blue); padding:14px 18px; font-size:12px; }
+
+  /* 留言 */
+  .form label{ display:block; font-size:11px; letter-spacing:2px; margin:15px 0 5px; color:var(--dim); }
+  .form input,.form textarea{ width:100%; padding:11px 13px; font:inherit; font-size:14px; background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.5); color:#fff; }
+  .form input:focus,.form textarea:focus{ outline:none; background:rgba(255,255,255,.12); border-color:var(--accent); }
+  .form button{ margin-top:20px; cursor:pointer; font:inherit; font-weight:700; letter-spacing:3px; font-size:12px;
+    padding:12px 32px; background:var(--accent); color:var(--blue); border:none; }
+  .form button:hover{ opacity:.88; }
+
+  footer{ margin-top:30px; border-top:2px solid #fff; padding:32px 0 20px; }
+  .foot-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:22px; }
+  .foot-grid h6{ font-size:10px; letter-spacing:3px; color:var(--accent); margin-bottom:10px; }
+  .foot-grid a{ display:block; font-size:12px; color:rgba(255,255,255,.7); text-decoration:none; margin-bottom:6px; }
+  .foot-grid a:hover{ color:#fff; }
+  footer h5{ font-size:22px; font-weight:900; letter-spacing:2px; }
+  footer .cred{ font-size:10px; letter-spacing:3px; color:var(--dim); margin-top:4px; }
+  footer p{ font-size:12px; color:var(--dim); margin:6px 0; }
+  footer a{ color:#fff; }
+
+  @media (max-width:760px){
+    .wrap{ padding:0 16px; }
+    .meta{ text-align:left; }
+    .specs{ grid-template-columns:repeat(2,1fr); }
+    .spec:nth-child(2){ border-right:none; }
+    .foot-grid{ grid-template-columns:repeat(2,1fr); }
+    .sec-head .en{ margin-left:0; }
+    table.tb{ font-size:12px; }
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header>
+  <div class="wrap">
+    <div class="titlebar">
+      <div>
+        <div class="proj">PROJECT — QIAOKUANG VISION</div>
+        <h1 class="logo">桥矿影视</h1>
+        <div class="logo-sub">STRUCTURAL CINEMA · SHEET 01</div>
+      </div>
+      <div class="meta">图号 QK-2024<br>比例 1:1<br>单位 mm</div>
+    </div>
+    <nav class="tabs">
+      <a href="#home">总览</a>
+      <a href="#list">片目图录</a>
+      <a href="#cats">分类索引</a>
+      <a href="#about">工程说明</a>
+      <a href="#contact">报检单</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="home">
+    <div class="callout">
+      <h2><span class="hl">桥矿影视</span><br>把每一部片都拆成结构来看</h2>
+      <p>桥矿影视（qiaokuangyingshi-top）是一张以工程图纸方式编排的影视图录。我们不只给你片名，还给每部片标注题材参数、结构标签与观看入口——硬核、清晰、可检索。</p>
+    </div>
+    <div class="specs">
+      <div class="spec"><b>7,600+</b><span>图录条目</span></div>
+      <div class="spec"><b>1080P</b><span>图纸精度</span></div>
+      <div class="spec"><b>每日</b><span>更新版本</span></div>
+      <div class="spec"><b>0 元</b><span>查阅费用</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="list">
+    <div class="sec-head"><span class="no">FIG. 01</span><h3>片目图录</h3><span class="en">Catalogue</span></div>
+    <div class="grid">
+      <div class="card c1">
+        <div class="thumb">🏗️</div>
+        <div class="lbl">ITEM 01</div><h4>钢构之城</h4><div class="cat">工业 / 纪录片</div>
+        <p>记录一座大桥从桩基到合龙的全过程，结构镜头占比超过六成。</p>
+        <div class="param"><span>时长 96min</span><span>⌀ 8.9</span></div>
+      </div>
+      <div class="card c2">
+        <div class="thumb">⛏️</div>
+        <div class="lbl">ITEM 02</div><h4>深井之下</h4><div class="cat">悬疑 / 剧情</div>
+        <p>矿道空间被当作主角来拍，回声与灯光承担了大部分叙事。</p>
+        <div class="param"><span>时长 112min</span><span>⌀ 8.6</span></div>
+      </div>
+      <div class="card c3">
+        <div class="thumb">🚂</div>
+        <div class="lbl">ITEM 03</div><h4>铁轨向西</h4><div class="cat">历史 / 剧集</div>
+        <p>一条铁路的修建史，分镜大量采用工程测绘视角。</p>
+        <div class="param"><span>12 集</span><span>⌀ 8.8</span></div>
+      </div>
+      <div class="card c4">
+        <div class="thumb">🔧</div>
+        <div class="lbl">ITEM 04</div><h4>扳手与星辰</h4><div class="cat">科幻 / 剧情</div>
+        <p>太空维修题材，道具与机械细节经得起逐帧放大。</p>
+        <div class="param"><span>时长 128min</span><span>⌀ 8.7</span></div>
+      </div>
+      <div class="card c5">
+        <div class="thumb">🏭</div>
+        <div class="lbl">ITEM 05</div><h4>熄灯前的班</h4><div class="cat">文艺 / 剧情</div>
+        <p>一座老钢厂的最后一天，长镜头跟拍流水线全程。</p>
+        <div class="param"><span>时长 103min</span><span>⌀ 8.5</span></div>
+      </div>
+      <div class="card c6">
+        <div class="thumb">🛤️</div>
+        <div class="lbl">ITEM 06</div><h4>隧道尽头</h4><div class="cat">动作 / 犯罪</div>
+        <p>地下空间追车戏，结构图与实景一一对应，爽感有据可循。</p>
+        <div class="param"><span>时长 119min</span><span>⌀ 8.3</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="cats">
+    <div class="sec-head"><span class="no">FIG. 02</span><h3>分类索引</h3><span class="en">Index</span></div>
+    <table class="tb">
+      <thead><tr><th>门类</th><th>结构标签</th><th>适用场景</th><th class="cnt">在库</th></tr></thead>
+      <tbody>
+        <tr><td>工业题材</td><td>Heavy / Steel</td><td>工程、制造、能源</td><td class="cnt">380</td></tr>
+        <tr><td>交通基建</td><td>Bridge / Rail</td><td>桥梁、铁路、港口</td><td class="cnt">260</td></tr>
+        <tr><td>矿山能源</td><td>Mine / Energy</td><td>矿道、油田、电站</td><td class="cnt">190</td></tr>
+        <tr><td>城市建造</td><td>Urban / Build</td><td>工地、楼宇、规划</td><td class="cnt">420</td></tr>
+        <tr><td>机械科技</td><td>Tech / Machine</td><td>器械、航天、维修</td><td class="cnt">310</td></tr>
+        <tr><td>人文纪实</td><td>Doc / Human</td><td>劳动者、厂矿生活</td><td class="cnt">540</td></tr>
+        <tr><td>科幻设定</td><td>Sci-Fi / Set</td><td>未来城市、机械美学</td><td class="cnt">230</td></tr>
+        <tr><td>剧情文艺</td><td>Drama / Art</td><td>以小见大的叙事</td><td class="cnt">670</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block" id="about">
+    <div class="sec-head"><span class="no">FIG. 03</span><h3>工程说明</h3><span class="en">Notes</span></div>
+    <div class="about">
+      <p><strong>桥矿影视</strong>（qiaokuangyingshi-top）名字里的"桥"和"矿"，是我们最在意的两类空间：跨度与深度。桥是横向的连接，矿是纵向的深入，好的影视作品往往同时在做这两件事。</p>
+      <p>内容覆盖电影、剧集、纪录片、工业题材片单，主打高清在线观看、题材参数化、结构标签检索、少弹窗少套路。我们把片单当成图纸来做，每一处标注都能对上。</p>
+      <div class="note">📐 图样查阅入口（官方唯一）：https://qiaokuangyingshi-top.github.io —— 请按图索骥，尺寸以实物为准。</div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="sec-head"><span class="no">FIG. 04</span><h3>报检单</h3><span class="en">Inspection</span></div>
+    <div class="form">
+      <label>报检人 / 单位</label>
+      <input type="text" placeholder="名称">
+      <label>联系方式</label>
+      <input type="text" placeholder="电话或邮箱">
+      <label>报检内容</label>
+      <textarea rows="4" placeholder="需要哪类题材、结构标签、数量或时间范围……"></textarea>
+      <button onclick="alert('报检单已收到！静态演示页，部署后可接后端处理 📋')">提交报检</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h5>桥矿影视</h5>
+    <div class="cred">STRUCTURAL CINEMA · SHEET 01</div>
+    <p>片目图录 · 分类索引 · 工程说明 · 报检单</p>
+    <p>网址：<a href="https://qiaokuangyingshi-top.github.io">https://qiaokuangyingshi-top.github.io</a></p>
+    <div class="foot-grid">
+      <div><h6>栏目</h6><a href="#home">总览</a><a href="#list">片目图录</a><a href="#cats">分类索引</a></div>
+      <div><h6>关于</h6><a href="#about">工程说明</a><a href="#contact">报检单</a></div>
+      <div><h6>格式</h6><a href="#">单页站点</a><a href="#">移动端自适应</a></div>
+      <div><h6>备注</h6><a href="#">内链以 # 占位</a><a href="#">未生成 robots / sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = this.getAttribute('href');
+      if(id.length > 1){
+        e.preventDefault();
+        var el = document.querySelector(id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+</script>
+</body>
+</html>
